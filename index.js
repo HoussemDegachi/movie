@@ -25,7 +25,7 @@ async function getMovies(){
         }
         $(".movies").removeClass("m1")
         if(rowMovies.Response == 'True'){
-            moviesHtmlSrc.innerHTML = sorted.map(elem => movieHtml(elem))
+            moviesHtmlSrc.innerHTML = sorted.map(elem => movieHtml(elem)).join("")
             suggestedNumSrc.innerHTML = "<h2 class='info--text'>Suggested: "+ rowMovies.totalResults +"</h2>" 
         }else{
             moviesHtmlSrc.innerHTML = "<div class='no-response'>"+
@@ -79,6 +79,8 @@ function sortSystem(){
 function displayFilter(){
     $(".nav--btns__filter").toggleClass("bold")
     $("#filter").toggleClass("filter-visible")
+    $('.filter-container').toggleClass("filter-animations")
+    $('.border-bottom').toggleClass('border-animations')
 }
 
 function filterByYear(event){
@@ -109,3 +111,13 @@ function reloadPage(){
     location.reload()
 }
 
+
+$(".search__input").click(function(){
+    $(".search__input").addClass("search__btn-mobile")
+    $(".logo").addClass("logo-mobile")
+})
+
+$("main").click(function(){
+    $(".search__input").removeClass("search__btn-mobile")
+    $(".logo").removeClass("logo-mobile")
+})
